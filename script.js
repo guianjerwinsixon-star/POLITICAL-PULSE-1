@@ -18,8 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [state.votes.sarah, state.votes.vico, state.votes.leni],
                 backgroundColor: ["#ff4d4d", "#4d94ff", "#ffb3d9"]
             }]
+        },
+        options: {
+            scales: { y: { beginAtZero: true } }
         }
     });
+
+    if (userRole === 'admin') {
+        document.getElementById('adminControls').style.display = 'block';
+    }
+    
     predictWinner();
 });
 
@@ -48,7 +56,17 @@ function vote(candidate) {
 function predictWinner() {
     const v = state.votes;
     const total = v.sarah + v.vico + v.leni;
-    if (total === 0) return;
+    if (total === 0) {
+        document.getElementById("prediction").innerHTML = "No data yet.";
+        return;
+    }
     const winner = Object.keys(v).reduce((a, b) => v[a] > v[b] ? a : b);
-    document.getElementById("prediction").innerHTML = `Leading: ${winner.toUpperCase()}`;
+    document.getElementById("prediction").innerHTML = `<strong>Current Leader:</strong> ${winner.toUpperCase()}`;
+}
+
+function resetPoll() {
+    if (confirm("Are you sure you want to clear all votes? This cannot be undone.")) {
+        localStorage.removeItem('pollData');
+        location.reload();
+    }
 }
