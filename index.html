@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login | Political Pulse</title>
+    <title>Login | Political Pulse</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main class="login-container">
         <section class="login-card">
-            <h1>Admin Login</h1>
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="user">Username</label>
-                    <input type="text" id="user" name="username" placeholder="Enter username" required>
-                </div>
-                <div class="input-group">
-                    <label for="pass">Password</label>
-                    <input type="password" id="pass" name="password" placeholder="Enter password" required>
-                </div>
-                <button type="submit">Login</button>
+            <h1>Political Pulse Login</h1>
+            
+            <div class="login-toggle">
+                <button onclick="showTab('voter')">Voter (Gmail)</button>
+                <button onclick="showTab('admin')">Admin</button>
+            </div>
+
+            <form id="voterForm" class="login-tab">
+                <input type="email" id="voterEmail" placeholder="Enter your @gmail.com" required>
+                <button type="submit">Login to Vote</button>
             </form>
-            <div id="message" aria-live="polite"></div>
+
+            <form id="adminForm" class="login-tab" style="display:none;">
+                <input type="text" id="adminUser" placeholder="Admin Username">
+                <input type="password" id="adminPass" placeholder="Admin Password">
+                <button type="submit">Login as Admin</button>
+            </form>
+            
+            <div id="message" style="margin-top:15px; color: #ff4d4d;"></div>
         </section>
     </main>
     <script src="admin.js"></script>
