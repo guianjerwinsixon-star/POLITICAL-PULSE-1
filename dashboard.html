@@ -3,86 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extreme Election Analytics</title>
+    <title>Analytics Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <body>
-    <div id="particles" aria-hidden="true"></div>
     <header class="main-header">
-        <h1>🇵🇭 Election Analytics Dashboard</h1>
-        <nav class="nav-controls">
-            <button type="button" class="btn-primary" onclick="openDashboard()">View Poll</button>
+        <h1>📊 Election Analytics</h1>
+        <nav>
+            <button class="btn-primary" onclick="openDashboard()">View Live Poll</button>
             <a href="index.html" class="btn-secondary">Logout</a>
         </nav>
     </header>
-
-    <main id="dashboard" class="container">
+    <main id="dashboard" class="container" style="display:none;">
         <section class="card-section">
-            <h2>Cast Your Vote</h2>
+            <h2>Candidates</h2>
             <div class="candidates-grid">
                 <article class="candidate-card">
                     <h3>Sarah Duterte</h3>
-                    <div class="vote-actions">
-                        <button onclick="vote('sarah','online')">Online</button>
-                        <button onclick="vote('sarah','f2f')">F2F</button>
-                        <button onclick="vote('sarah','hybrid')">Hybrid</button>
-                    </div>
+                    <button onclick="vote('sarah','online')">Online</button>
+                    <button onclick="vote('sarah','f2f')">F2F</button>
                 </article>
                 <article class="candidate-card">
                     <h3>Vico Sotto</h3>
-                    <div class="vote-actions">
-                        <button onclick="vote('vico','online')">Online</button>
-                        <button onclick="vote('vico','f2f')">F2F</button>
-                        <button onclick="vote('vico','hybrid')">Hybrid</button>
-                    </div>
+                    <button onclick="vote('vico','online')">Online</button>
+                    <button onclick="vote('vico','f2f')">F2F</button>
                 </article>
                 <article class="candidate-card">
                     <h3>Leni Robredo</h3>
-                    <div class="vote-actions">
-                        <button onclick="vote('leni','online')">Online</button>
-                        <button onclick="vote('leni','f2f')">F2F</button>
-                        <button onclick="vote('leni','hybrid')">Hybrid</button>
-                    </div>
+                    <button onclick="vote('leni','online')">Online</button>
+                    <button onclick="vote('leni','f2f')">F2F</button>
                 </article>
             </div>
         </section>
-
         <section class="analytics-grid">
             <div class="chart-container card">
-                <h2>Live Vote Race</h2>
-                <div class="race-bars">
-                    <div class="race-row"><label>Sarah Duterte</label><div class="progress-bg"><div class="bar sarah"></div></div></div>
-                    <div class="race-row"><label>Vico Sotto</label><div class="progress-bg"><div class="bar vico"></div></div></div>
-                    <div class="race-row"><label>Leni Robredo</label><div class="progress-bg"><div class="bar leni"></div></div></div>
-                </div>
-            </div>
-            <div class="chart-container card">
-                <h2>Election Trends</h2>
                 <canvas id="chart"></canvas>
             </div>
-        </section>
-
-        <footer class="stats-footer">
-            <div class="ballot-tracker card">
-                <h2>Ballot Tracker</h2>
-                <p>Online: <strong id="online">0</strong></p>
-                <p>F2F: <strong id="f2f">0</strong></p>
-                <p>Hybrid: <strong id="hybrid">0</strong></p>
+            <div class="stats-footer card">
+                <div id="prediction">Waiting for data...</div>
             </div>
-            <div class="prediction card">
-                <h2>AI Prediction</h2>
-                <div id="prediction">Analyzing current trends...</div>
-            </div>
-            <div class="voter-feed card">
-                <h2>Live Voter Feed</h2>
-                <ul id="voters" class="feed-list"></ul>
-            </div>
-        </footer>
-
-        <section class="info-footer card">
-            <h3>Methodology & Privacy</h3>
-            <p>Static version: Votes are stored in your browser's local storage. This is for demonstration purposes only.</p>
         </section>
     </main>
     <script src="script.js"></script>
