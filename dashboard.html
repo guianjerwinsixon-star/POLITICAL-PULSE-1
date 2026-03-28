@@ -29,7 +29,6 @@
                         <button onclick="vote('sarah','hybrid')">Hybrid</button>
                     </div>
                 </article>
-
                 <article class="candidate-card">
                     <h3>Vico Sotto</h3>
                     <div class="vote-actions">
@@ -38,7 +37,6 @@
                         <button onclick="vote('vico','hybrid')">Hybrid</button>
                     </div>
                 </article>
-
                 <article class="candidate-card">
                     <h3>Leni Robredo</h3>
                     <div class="vote-actions">
@@ -54,21 +52,11 @@
             <div class="chart-container card">
                 <h2>Live Vote Race</h2>
                 <div class="race-bars">
-                    <div class="race-row">
-                        <label>Sarah Duterte</label>
-                        <div class="progress-bg"><div class="bar sarah"></div></div>
-                    </div>
-                    <div class="race-row">
-                        <label>Vico Sotto</label>
-                        <div class="progress-bg"><div class="bar vico"></div></div>
-                    </div>
-                    <div class="race-row">
-                        <label>Leni Robredo</label>
-                        <div class="progress-bg"><div class="bar leni"></div></div>
-                    </div>
+                    <div class="race-row"><label>Sarah Duterte</label><div class="progress-bg"><div class="bar sarah"></div></div></div>
+                    <div class="race-row"><label>Vico Sotto</label><div class="progress-bg"><div class="bar vico"></div></div></div>
+                    <div class="race-row"><label>Leni Robredo</label><div class="progress-bg"><div class="bar leni"></div></div></div>
                 </div>
             </div>
-
             <div class="chart-container card">
                 <h2>Election Trends</h2>
                 <canvas id="chart"></canvas>
@@ -82,12 +70,10 @@
                 <p>F2F: <strong id="f2f">0</strong></p>
                 <p>Hybrid: <strong id="hybrid">0</strong></p>
             </div>
-
             <div class="prediction card">
                 <h2>AI Prediction</h2>
                 <div id="prediction">Analyzing current trends...</div>
             </div>
-
             <div class="voter-feed card">
                 <h2>Live Voter Feed</h2>
                 <ul id="voters" class="feed-list"></ul>
@@ -95,18 +81,10 @@
         </footer>
 
         <section class="info-footer card">
-            <div class="methodology">
-                <h3>Methodology</h3>
-                <p>Results are calculated using a weighted distribution model that factors in voting medium and real-time momentum. F2F and Hybrid votes carry a higher weight in our confidence projection.</p>
-            </div>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
-            <div class="privacy">
-                <h3>Privacy & Terms</h3>
-                <p>User data is strictly anonymized. No personal identifiers are stored. This dashboard is for simulation and analytical purposes only.</p>
-            </div>
+            <h3>Methodology & Privacy</h3>
+            <p>Static version: Votes are stored in your browser's local storage. This is for demonstration purposes only.</p>
         </section>
     </main>
-
     <script src="script.js"></script>
 </body>
 </html>
