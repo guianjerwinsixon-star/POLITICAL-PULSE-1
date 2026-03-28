@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Dashboard</title>
+    <title>Analytics Dashboard | Political Pulse</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
@@ -15,36 +15,53 @@
             <a href="index.html" class="btn-secondary">Logout</a>
         </nav>
     </header>
+
     <main id="dashboard" class="container" style="display:none;">
         <section class="card-section">
-            <h2>Candidates</h2>
+            <h2>Select Your Candidate</h2>
             <div class="candidates-grid">
                 <article class="candidate-card">
                     <h3>Sarah Duterte</h3>
-                    <button onclick="vote('sarah','online')">Online</button>
-                    <button onclick="vote('sarah','f2f')">F2F</button>
+                    <div class="vote-btns">
+                        <button onclick="vote('sarah')">Vote Online</button>
+                    </div>
                 </article>
+
                 <article class="candidate-card">
                     <h3>Vico Sotto</h3>
-                    <button onclick="vote('vico','online')">Online</button>
-                    <button onclick="vote('vico','f2f')">F2F</button>
+                    <div class="vote-btns">
+                        <button onclick="vote('vico')">Vote Online</button>
+                    </div>
                 </article>
+
                 <article class="candidate-card">
                     <h3>Leni Robredo</h3>
-                    <button onclick="vote('leni','online')">Online</button>
-                    <button onclick="vote('leni','f2f')">F2F</button>
+                    <div class="vote-btns">
+                        <button onclick="vote('leni')">Vote Online</button>
+                    </div>
                 </article>
             </div>
         </section>
+
         <section class="analytics-grid">
             <div class="chart-container card">
+                <h2>Live Vote Race</h2>
                 <canvas id="chart"></canvas>
             </div>
-            <div class="stats-footer card">
+            
+            <div class="prediction-box card">
+                <h2>AI Prediction</h2>
                 <div id="prediction">Waiting for data...</div>
             </div>
         </section>
+
+        <section id="adminControls" style="display:none; margin-top: 50px; padding: 20px; border-top: 2px dashed #ff4d4d; background: rgba(255, 77, 77, 0.1);">
+            <h2 style="color: #ff4d4d;">System Reset (Admin Only)</h2>
+            <p>This action will wipe all votes from this browser's memory.</p>
+            <button onclick="resetPoll()" style="background: #ff4d4d; color: white; padding: 15px;">RESET ALL VOTES</button>
+        </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
