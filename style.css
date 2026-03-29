@@ -1,7 +1,7 @@
 body {
     background: #0b0b14;
     color: #e0e0e0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     line-height: 1.6;
 }
@@ -30,10 +30,6 @@ input {
     border: 1px solid #30305a;
     background: #0b0b14;
     color: white;
-}
-.search-bar {
-    border-color: #4d94ff;
-    margin-bottom: 20px;
 }
 button {
     background: #00f2ff;
@@ -81,9 +77,6 @@ button:hover {
     padding: 20px;
     text-align: center;
 }
-#dashboard {
-    padding: 20px;
-}
 .methodology-section {
     max-width: 900px;
     margin: 60px auto;
@@ -102,10 +95,15 @@ button:hover {
     border: 2px dashed #ff4d4d;
     background: rgba(255, 77, 77, 0.05);
 }
-table th, table td {
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #a0a0c0;
+}
+th, td {
     padding: 12px;
     border-bottom: 1px solid #30305a;
+    text-align: left;
 }
-table tr:hover {
-    background: rgba(0, 242, 255, 0.05);
-}
+th { color: #00f2ff; }
