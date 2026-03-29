@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="main-header">
-        <h2 style="color:#00f2ff; margin:0;">📊 Political Pulse Analytics</h2>
+        <h2>📊 Election Dashboard</h2>
         <nav>
             <button onclick="openDashboard()">Launch Analytics</button>
             <button onclick="location.href='index.html'" style="background:#ff4d4d; color:white;">Logout</button>
@@ -18,15 +18,14 @@
 
     <main id="dashboard" style="display:none; padding: 20px;">
         <section class="candidates-grid">
-            <div class="candidate-card"><h3>Sarah Duterte</h3><button onclick="vote('sarah')">Cast Vote</button></div>
-            <div class="candidate-card"><h3>Vico Sotto</h3><button onclick="vote('vico')">Cast Vote</button></div>
-            <div class="candidate-card"><h3>Leni Robredo</h3><button onclick="vote('leni')">Cast Vote</button></div>
+            <div class="candidate-card"><h3>Sarah Duterte</h3><button onclick="vote('sarah')">Vote</button></div>
+            <div class="candidate-card"><h3>Vico Sotto</h3><button onclick="vote('vico')">Vote</button></div>
+            <div class="candidate-card"><h3>Leni Robredo</h3><button onclick="vote('leni')">Vote</button></div>
         </section>
 
         <section class="chart-container card">
-            <h3>Real-Time Voting Distribution</h3>
             <canvas id="chart"></canvas>
-            <div id="prediction" style="padding:20px; font-size:1.3rem; color:#00f2ff;"></div>
+            <div id="prediction" style="padding:20px; font-size:1.2rem; color:#00f2ff;"></div>
         </section>
 
         <section class="methodology-section">
@@ -34,28 +33,27 @@
             <h3>1. Computational Methodology</h3>
             <p>The Political Pulse platform employs a Deterministic Data Aggregation model. This system utilizes 1:1 token mapping to ensure statistical accuracy. The backend logic follows a three-tier architecture: Ingestion, Processing, and Presentation. The Ingestion layer filters for the @gmail.com domain to mitigate bot infiltration. The Processing layer uses a linear summation algorithm to calculate vote weights, while the AI Prediction module utilizes Heuristic Analysis to project the current leader based on the Delta between total ballots cast.</p>
             <h3>2. Integrity & Anti-Fraud Protocols</h3>
-            <p>The system enforces a Strict Single-Entry Policy (SSEP). Upon successful ballot submission, the user's unique Gmail identifier is appended to an array within the client-side metadata. Any secondary attempt to access the voting function with the same identifier triggers an immediate interception, blocking the duplicate entry before it reaches the data state. This ensures that the voting process remains untainted by duplicate entries.</p>
+            <p>The system enforces a Strict Single-Entry Policy (SSEP). Upon successful ballot submission, the user's unique Gmail identifier is appended to an array within the client-side metadata. Any secondary attempt to access the voting function with the same identifier triggers an immediate interception, blocking the duplicate entry before it reaches the data state.</p>
             <h3>3. Privacy & Compliance Statement</h3>
-            <p>This application is designed in alignment with General Data Protection Regulation (GDPR) principles for localized data handling. No data is transmitted to external servers; all information remains in LocalStorage. Users have the right to erasure, and the Administrator retains the authority to execute a Global Hard Reset. Voter identities are used solely for validation and are never displayed on the public-facing dashboard, ensuring absolute anonymity for all participants.</p>
+            <p>This application follows GDPR principles for localized data handling. No data is transmitted to external servers; all information remains in LocalStorage. Voter identities are used solely for validation and are never displayed on the public-facing dashboard, ensuring absolute anonymity for all participants.</p>
         </section>
 
         <section id="adminControls" class="admin-zone" style="display:none;">
-            <h2 style="color:#ff4d4d;">System Administrator Controls</h2>
+            <h2>Admin Voter Audit</h2>
             <div class="card" style="max-width: 100%; background: #0b0b14;">
-                <h3>Voter Audit Trail</h3>
-                <input type="text" id="searchInput" onkeyup="filterLog()" placeholder="Search Gmail Address..." style="margin-bottom: 20px;">
+                <input type="text" id="searchInput" onkeyup="filterLog()" placeholder="Search Gmail Address...">
                 <table>
                     <thead>
                         <tr>
                             <th>Gmail Address</th>
-                            <th>Candidate</th>
+                            <th>Choice</th>
                             <th>Date & Time</th>
                         </tr>
                     </thead>
                     <tbody id="voterTableBody"></tbody>
                 </table>
             </div>
-            <button onclick="resetPoll()" style="background:#ff4d4d; color:white; margin-top: 30px;">FACTORY RESET DATABASE</button>
+            <button onclick="resetPoll()" style="background:#ff4d4d; color:white; margin-top: 20px;">RESET DATABASE</button>
         </section>
     </main>
     <script src="script.js"></script>
