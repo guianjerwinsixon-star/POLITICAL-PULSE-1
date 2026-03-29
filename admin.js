@@ -13,7 +13,7 @@ if(document.getElementById('adminForm')) {
             localStorage.removeItem('voterEmail');
             window.location.href = "dashboard.html";
         } else {
-            document.getElementById("message").textContent = "ACCESS DENIED: Invalid Credentials";
+            document.getElementById("message").textContent = "Invalid Admin Credentials";
         }
     });
 }
@@ -27,7 +27,7 @@ if(document.getElementById('voterForm')) {
             localStorage.setItem('voterEmail', email);
             window.location.href = "dashboard.html";
         } else {
-            document.getElementById("message").textContent = "VALIDATION ERROR: Use @gmail.com";
+            document.getElementById("message").textContent = "Use a valid @gmail.com address";
         }
     });
 }
