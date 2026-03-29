@@ -1,4 +1,4 @@
-const state = JSON.parse(localStorage.getItem('pollData')) || {
+let state = JSON.parse(localStorage.getItem('pollData')) || {
     votes: { sarah: 0, vico: 0, leni: 0 },
     votedEmails: []
 };
@@ -10,24 +10,21 @@ let chart;
 document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById("chart").getContext('2d');
     chart = new Chart(ctx, {
-        type: "bar",
+        type: 'bar',
         data: {
-            labels: ["Sarah", "Vico", "Leni"],
+            labels: ['Sarah', 'Vico', 'Leni'],
             datasets: [{
-                label: "Votes",
+                label: 'Total Votes',
                 data: [state.votes.sarah, state.votes.vico, state.votes.leni],
-                backgroundColor: ["#ff4d4d", "#4d94ff", "#ffb3d9"]
+                backgroundColor: ['#ff4d4d', '#4d94ff', '#ffb3d9']
             }]
         },
-        options: {
-            scales: { y: { beginAtZero: true } }
-        }
+        options: { scales: { y: { beginAtZero: true } } }
     });
 
     if (userRole === 'admin') {
         document.getElementById('adminControls').style.display = 'block';
     }
-    
     predictWinner();
 });
 
@@ -37,7 +34,7 @@ function openDashboard() {
 
 function vote(candidate) {
     if (userRole === 'admin') {
-        alert("Admins cannot vote. Please use a Gmail account to participate.");
+        alert("Admins cannot vote.");
         return;
     }
     if (state.votedEmails.includes(currentUserEmail)) {
@@ -50,22 +47,22 @@ function vote(candidate) {
     chart.data.datasets[0].data = [state.votes.sarah, state.votes.vico, state.votes.leni];
     chart.update();
     predictWinner();
-    alert("Vote successful!");
+    alert("Vote Recorded!");
 }
 
 function predictWinner() {
     const v = state.votes;
     const total = v.sarah + v.vico + v.leni;
     if (total === 0) {
-        document.getElementById("prediction").innerHTML = "No data yet.";
+        document.getElementById("prediction").textContent = "No votes yet.";
         return;
     }
     const winner = Object.keys(v).reduce((a, b) => v[a] > v[b] ? a : b);
-    document.getElementById("prediction").innerHTML = `<strong>Current Leader:</strong> ${winner.toUpperCase()}`;
+    document.getElementById("prediction").innerHTML = `Leading: <strong>${winner.toUpperCase()}</strong>`;
 }
 
 function resetPoll() {
-    if (confirm("Are you sure you want to clear all votes? This cannot be undone.")) {
+    if (confirm("Reset everything?")) {
         localStorage.removeItem('pollData');
         location.reload();
     }
