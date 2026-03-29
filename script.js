@@ -34,11 +34,11 @@ function openDashboard() {
 
 function vote(candidate) {
     if (userRole === 'admin') {
-        alert("Admins cannot vote.");
+        alert("Admins cannot vote. Log in as a voter to participate.");
         return;
     }
     if (state.votedEmails.includes(currentUserEmail)) {
-        alert("You have already voted!");
+        alert("This Gmail account has already voted!");
         return;
     }
     state.votes[candidate]++;
@@ -47,14 +47,14 @@ function vote(candidate) {
     chart.data.datasets[0].data = [state.votes.sarah, state.votes.vico, state.votes.leni];
     chart.update();
     predictWinner();
-    alert("Vote Recorded!");
+    alert("Vote successful!");
 }
 
 function predictWinner() {
     const v = state.votes;
     const total = v.sarah + v.vico + v.leni;
     if (total === 0) {
-        document.getElementById("prediction").textContent = "No votes yet.";
+        document.getElementById("prediction").textContent = "Waiting for initial data...";
         return;
     }
     const winner = Object.keys(v).reduce((a, b) => v[a] > v[b] ? a : b);
@@ -62,7 +62,7 @@ function predictWinner() {
 }
 
 function resetPoll() {
-    if (confirm("Reset everything?")) {
+    if (confirm("Clear all voting data?")) {
         localStorage.removeItem('pollData');
         location.reload();
     }
