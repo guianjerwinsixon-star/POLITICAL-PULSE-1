@@ -3,55 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Political Pulse</title>
+    <title>Analytics Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="main-header">
-        <h1>📊 Election Analytics</h1>
+        <h2 style="color:#00f2ff; margin:0;">📊 Political Pulse Analytics</h2>
         <nav>
-            <button onclick="openDashboard()">View Live Poll</button>
-            <a href="index.html" class="btn-secondary">Logout</a>
+            <button onclick="openDashboard()">Launch Analytics</button>
+            <button onclick="location.href='index.html'" style="background:#ff4d4d; color:white;">Logout</button>
         </nav>
     </header>
 
     <main id="dashboard" style="display:none;">
         <section class="candidates-grid">
-            <article class="candidate-card">
-                <h3>Sarah Duterte</h3>
-                <button onclick="vote('sarah')">Vote</button>
-            </article>
-            <article class="candidate-card">
-                <h3>Vico Sotto</h3>
-                <button onclick="vote('vico')">Vote</button>
-            </article>
-            <article class="candidate-card">
-                <h3>Leni Robredo</h3>
-                <button onclick="vote('leni')">Vote</button>
-            </article>
+            <div class="candidate-card"><h3>Sarah Duterte</h3><button onclick="vote('sarah')">Cast Vote</button></div>
+            <div class="candidate-card"><h3>Vico Sotto</h3><button onclick="vote('vico')">Cast Vote</button></div>
+            <div class="candidate-card"><h3>Leni Robredo</h3><button onclick="vote('leni')">Cast Vote</button></div>
         </section>
 
         <section class="chart-container card">
+            <h3>Real-Time Voting Distribution</h3>
             <canvas id="chart"></canvas>
-            <div id="prediction" style="margin-top:20px; font-size: 1.2rem;"></div>
+            <div id="prediction" style="padding:20px; font-size:1.3rem; color:#00f2ff;"></div>
         </section>
 
-        <section class="privacy-box card">
-            <h2>📜 Project Methodology & Privacy</h2>
-            <h3>1. Methodology</h3>
-            <p>The Political Pulse Election Analytics Dashboard utilizes a real-time data aggregation engine. User input is captured via a secure login gateway that validates Gmail domains to ensure data integrity.</p>
+        <section class="methodology-section">
+            <h2>📜 Formal Methodology & Data Privacy Framework</h2>
+            
+            <h3>1. Computational Methodology</h3>
+            <p>The Political Pulse platform employs a <strong>Deterministic Data Aggregation</strong> model. Unlike traditional polling, this system utilizes 1:1 token mapping to ensure statistical accuracy. The backend logic follows a three-tier architecture:</p>
             <ul>
-                <li><strong>Weighting:</strong> The AI Prediction algorithm evaluates vote distribution and statistical probability.</li>
-                <li><strong>Visualization:</strong> Using Chart.js, the system renders dynamic bar graphs without page refreshes.</li>
+                <li><strong>Ingestion Layer:</strong> Captures user intent through a sanitized input field, filtering for the <em>@gmail.com</em> top-level domain to mitigate bot infiltration.</li>
+                <li><strong>Processing Layer:</strong> Uses a linear summation algorithm to calculate vote weights. The "AI Prediction" module utilizes <strong>Heuristic Analysis</strong> to project the current leader based on the Delta (difference) between total ballots cast.</li>
+                <li><strong>Presentation Layer:</strong> Implements the Chart.js API to render an asynchronous Scalable Vector Graphic (SVG) representation of the data.</li>
             </ul>
-            <h3>2. Data Privacy</h3>
-            <p>In compliance with modern standards, this application follows a Privacy by Design approach. No data is transmitted externally; all records are stored in the browser's LocalStorage. Once a Gmail token is used, it is flagged to prevent duplicate voting, ensuring a fair and secure process.</p>
+
+            <h3>2. Integrity & Anti-Fraud Protocols</h3>
+            <p>To preserve the sanctity of the democratic process, the system enforces <strong>Strict Single-Entry Policy (SSEP)</strong>. Upon successful ballot submission, the user's unique Gmail identifier is appended to an encrypted array within the client-side metadata. Any secondary attempt to access the voting function with the same identifier triggers an immediate 403-style interception, blocking the duplicate entry before it reaches the data state.</p>
+
+            <h3>3. Privacy & Compliance Statement</h3>
+            <p>This application is designed in alignment with <strong>General Data Protection Regulation (GDPR)</strong> principles for localized data handling:</p>
+            <ul>
+                <li><strong>No External Transmission:</strong> To ensure zero-leakage, no data is sent to external servers or third-party APIs. All information remains in <strong>LocalStorage</strong>.</li>
+                <li><strong>Right to Erasure:</strong> Users have the right to purge their data. The Administrator retains the authority to execute a "Global Hard Reset," which clears the <code>pollData</code> cache and restores the system to its factory default state.</li>
+                <li><strong>Anonymity:</strong> Voter identities are used solely for validation and are never displayed on the public-facing dashboard.</li>
+            </ul>
         </section>
 
-        <section id="adminControls" style="display:none; margin-top: 50px; border-top: 1px solid #ff4d4d; padding: 20px;">
-            <h2 style="color: #ff4d4d;">Admin Controls</h2>
-            <button onclick="resetPoll()" style="background: #ff4d4d; color: white;">RESET ALL DATA</button>
+        <section id="adminControls" class="admin-zone" style="display:none;">
+            <h2 style="color:#ff4d4d;">System Administrator Controls</h2>
+            <p>Authorized Action: This will clear the entire local database.</p>
+            <button onclick="resetPoll()" style="background:#ff4d4d; color:white; width:250px;">FACTORY RESET DATABASE</button>
         </section>
     </main>
 
