@@ -6,13 +6,14 @@ function showTab(tab) {
 if(document.getElementById('adminForm')) {
     document.getElementById('adminForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        if (document.getElementById('adminUser').value === "admin" && 
-            document.getElementById('adminPass').value === "admin123") {
+        const u = document.getElementById('adminUser').value;
+        const p = document.getElementById('adminPass').value;
+        if (u === "admin" && p === "admin123") {
             localStorage.setItem('userRole', 'admin');
             localStorage.removeItem('voterEmail');
             window.location.href = "dashboard.html";
         } else {
-            document.getElementById("message").textContent = "Invalid Admin Credentials";
+            document.getElementById("message").textContent = "ACCESS DENIED: Invalid Credentials";
         }
     });
 }
@@ -26,7 +27,7 @@ if(document.getElementById('voterForm')) {
             localStorage.setItem('voterEmail', email);
             window.location.href = "dashboard.html";
         } else {
-            document.getElementById("message").textContent = "Error: Use a @gmail.com address";
+            document.getElementById("message").textContent = "VALIDATION ERROR: Use @gmail.com";
         }
     });
 }
