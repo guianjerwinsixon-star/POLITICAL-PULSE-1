@@ -3,62 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Dashboard | Political Pulse</title>
+    <title>Dashboard | Political Pulse</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="main-header">
         <h1>📊 Election Analytics</h1>
         <nav>
-            <button class="btn-primary" onclick="openDashboard()">View Live Poll</button>
+            <button onclick="openDashboard()">View Live Poll</button>
             <a href="index.html" class="btn-secondary">Logout</a>
         </nav>
     </header>
 
-    <main id="dashboard" class="container" style="display:none;">
-        <section class="card-section">
-            <h2>Select Your Candidate</h2>
-            <div class="candidates-grid">
-                <article class="candidate-card">
-                    <h3>Sarah Duterte</h3>
-                    <div class="vote-btns">
-                        <button onclick="vote('sarah')">Vote Online</button>
-                    </div>
-                </article>
-
-                <article class="candidate-card">
-                    <h3>Vico Sotto</h3>
-                    <div class="vote-btns">
-                        <button onclick="vote('vico')">Vote Online</button>
-                    </div>
-                </article>
-
-                <article class="candidate-card">
-                    <h3>Leni Robredo</h3>
-                    <div class="vote-btns">
-                        <button onclick="vote('leni')">Vote Online</button>
-                    </div>
-                </article>
-            </div>
+    <main id="dashboard" style="display:none;">
+        <section class="candidates-grid">
+            <article class="candidate-card">
+                <h3>Sarah Duterte</h3>
+                <button onclick="vote('sarah')">Vote</button>
+            </article>
+            <article class="candidate-card">
+                <h3>Vico Sotto</h3>
+                <button onclick="vote('vico')">Vote</button>
+            </article>
+            <article class="candidate-card">
+                <h3>Leni Robredo</h3>
+                <button onclick="vote('leni')">Vote</button>
+            </article>
         </section>
 
-        <section class="analytics-grid">
-            <div class="chart-container card">
-                <h2>Live Vote Race</h2>
-                <canvas id="chart"></canvas>
-            </div>
-            
-            <div class="prediction-box card">
-                <h2>AI Prediction</h2>
-                <div id="prediction">Waiting for data...</div>
-            </div>
+        <section class="chart-container card">
+            <canvas id="chart"></canvas>
+            <div id="prediction" style="margin-top:20px; font-size: 1.2rem;"></div>
         </section>
 
-        <section id="adminControls" style="display:none; margin-top: 50px; padding: 20px; border-top: 2px dashed #ff4d4d; background: rgba(255, 77, 77, 0.1);">
-            <h2 style="color: #ff4d4d;">System Reset (Admin Only)</h2>
-            <p>This action will wipe all votes from this browser's memory.</p>
-            <button onclick="resetPoll()" style="background: #ff4d4d; color: white; padding: 15px;">RESET ALL VOTES</button>
+        <section class="privacy-box card">
+            <h2>📜 Project Methodology & Privacy</h2>
+            <h3>1. Methodology</h3>
+            <p>The Political Pulse Election Analytics Dashboard utilizes a real-time data aggregation engine. User input is captured via a secure login gateway that validates Gmail domains to ensure data integrity.</p>
+            <ul>
+                <li><strong>Weighting:</strong> The AI Prediction algorithm evaluates vote distribution and statistical probability.</li>
+                <li><strong>Visualization:</strong> Using Chart.js, the system renders dynamic bar graphs without page refreshes.</li>
+            </ul>
+            <h3>2. Data Privacy</h3>
+            <p>In compliance with modern standards, this application follows a Privacy by Design approach. No data is transmitted externally; all records are stored in the browser's LocalStorage. Once a Gmail token is used, it is flagged to prevent duplicate voting, ensuring a fair and secure process.</p>
+        </section>
+
+        <section id="adminControls" style="display:none; margin-top: 50px; border-top: 1px solid #ff4d4d; padding: 20px;">
+            <h2 style="color: #ff4d4d;">Admin Controls</h2>
+            <button onclick="resetPoll()" style="background: #ff4d4d; color: white;">RESET ALL DATA</button>
         </section>
     </main>
 
