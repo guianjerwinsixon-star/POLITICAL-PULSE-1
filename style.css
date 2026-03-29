@@ -31,6 +31,10 @@ input {
     background: #0b0b14;
     color: white;
 }
+.search-bar {
+    border-color: #4d94ff;
+    margin-bottom: 20px;
+}
 button {
     background: #00f2ff;
     color: #0b0b14;
@@ -69,11 +73,13 @@ button:hover {
     border-radius: 10px;
     border-left: 4px solid #00f2ff;
     width: 200px;
+    text-align: center;
 }
 .chart-container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
+    text-align: center;
 }
 #dashboard {
     padding: 20px;
@@ -95,4 +101,11 @@ button:hover {
     padding: 30px;
     border: 2px dashed #ff4d4d;
     background: rgba(255, 77, 77, 0.05);
+}
+table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #30305a;
+}
+table tr:hover {
+    background: rgba(0, 242, 255, 0.05);
 }
