@@ -28,15 +28,41 @@
             <div id="prediction" style="padding:20px; font-size:1.2rem; color:#00f2ff;"></div>
         </section>
 
-        <section class="methodology-section">
-            <h2>📜 Formal Methodology & Data Privacy Framework</h2>
-            <h3>1. Computational Methodology</h3>
-            <p>The Political Pulse platform employs a Deterministic Data Aggregation model. This system utilizes 1:1 token mapping to ensure statistical accuracy. The backend logic follows a three-tier architecture: Ingestion, Processing, and Presentation. The Ingestion layer filters for the @gmail.com domain to mitigate bot infiltration. The Processing layer uses a linear summation algorithm to calculate vote weights, while the AI Prediction module utilizes Heuristic Analysis to project the current leader based on the Delta between total ballots cast.</p>
-            <h3>2. Integrity & Anti-Fraud Protocols</h3>
-            <p>The system enforces a Strict Single-Entry Policy (SSEP). Upon successful ballot submission, the user's unique Gmail identifier is appended to an array within the client-side metadata. Any secondary attempt to access the voting function with the same identifier triggers an immediate interception, blocking the duplicate entry before it reaches the data state.</p>
-            <h3>3. Privacy & Compliance Statement</h3>
-            <p>This application follows GDPR principles for localized data handling. No data is transmitted to external servers; all information remains in LocalStorage. Voter identities are used solely for validation and are never displayed on the public-facing dashboard, ensuring absolute anonymity for all participants.</p>
-        </section>
+       <section class="methodology-section card" style="max-width: 1000px; margin: 40px auto; text-align: left; background: #111126; padding: 40px; border: 1px solid #30305a;">
+    <h2 style="color: #00f2ff; border-bottom: 2px solid #00f2ff; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">📜 System Methodology & Philippine Data Privacy Compliance</h2>
+    
+    <div style="margin-top: 25px;">
+        <h3 style="color: #4d94ff;">I. Technical Methodology</h3>
+        <p style="color: #a0a0c0;">The <strong>Political Pulse v2.0</strong> system architecture is built upon a <em>Client-Side Data Processing Model</em>. This methodology ensures zero-latency updates and high availability for localized polling. The system workflow is categorized into four distinct phases:</p>
+        <ul style="color: #a0a0c0; line-height: 1.8;">
+            <li><strong>1. Identity Verification Layer:</strong> The system utilizes a restrictive domain-validation algorithm that filters entries based on the @gmail.com Top-Level Domain (TLD). This acts as a primary defense against automated bot submissions.</li>
+            <li><strong>2. Algorithmic Processing:</strong> Votes are processed via an asynchronous JavaScript execution loop. The <em>AI Prediction Module</em> performs a real-time delta analysis between candidates to determine statistical leads and probability outcomes.</li>
+            <li><strong>3. Data Persistence (No-SQL Simulation):</strong> Utilizing <code>window.localStorage</code>, the system simulates a No-SQL database environment. This allows for persistent state management without the overhead of external server calls, ensuring the application remains functional in offline-first environments.</li>
+            <li><strong>4. Dynamic Visualization:</strong> Data is rendered through the Chart.js API, mapping internal arrays to a 2D canvas element for clear, academic-level data representation.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <h3 style="color: #4d94ff;">II. Privacy Policy (RA 10173 Compliance)</h3>
+        <p style="color: #a0a0c0;">In accordance with the <strong>Data Privacy Act of 2012 (Republic Act No. 10173)</strong> of the Philippines and the guidelines set by the <strong>National Privacy Commission (NPC)</strong>, this project adheres to the principles of Transparency, Legitimate Purpose, and Proportionality.</p>
+        
+        <div style="background: rgba(0, 242, 255, 0.05); padding: 20px; border-radius: 8px; margin-top: 15px;">
+            <h4 style="color: #00f2ff; margin-top: 0;">1. Data Collection & Purpose</h4>
+            <p style="color: #a0a0c0; font-size: 0.9rem;">We collect limited Personal Information (PI) consisting of your Gmail address and a system-generated timestamp. The sole purpose of this collection is to prevent "Double Voting" and ensure the integrity of the polling results for academic research and demonstration purposes.</p>
+            
+            <h4 style="color: #00f2ff;">2. Data Retention and Disposal</h4>
+            <p style="color: #a0a0c0; font-size: 0.9rem;">Consistent with the DPA, data is only kept for the duration of the project demonstration. Since all data is stored in the user's LocalStorage, the data subject (the voter) maintains full control and may dispose of their records at any time by clearing their browser cache or via the Administrator’s "Global Reset" function.</p>
+            
+            <h4 style="color: #00f2ff;">3. Security Measures</h4>
+            <p style="color: #a0a0c0; font-size: 0.9rem;">Technical and organizational security measures are implemented to protect the data against natural and human dangers. All email addresses are stored in a private array and are not visible to other voters on the public dashboard, maintaining the <strong>Secret Ballot</strong> principle.</p>
+            
+            <h4 style="color: #00f2ff;">4. Rights of the Data Subject</h4>
+            <p style="color: #a0a0c0; font-size: 0.9rem;">Under RA 10173, participants have the right to: (a) Be informed that their data is being processed; (b) Object to the processing; (c) Access their data; and (d) Rectify or erase their data. By proceeding with the vote, the user grants "Express Consent" for this specific academic exercise.</p>
+        </div>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 0.8rem; color: #5a5a7a; text-align: center;"><em>This project is developed for educational purposes by the IT Department. Version 2.0 - 2026.</em></p>
+</section>
 
         <section id="adminControls" class="admin-zone" style="display:none;">
             <h2>Admin Voter Audit</h2>
