@@ -12,14 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
     chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Sarah', 'Vico', 'Leni'],
+            labels: ['Sarah Duterte', 'Vico Sotto', 'Leni Robredo'],
             datasets: [{
-                label: 'Total Votes',
+                label: 'Verified Ballots',
                 data: [state.votes.sarah, state.votes.vico, state.votes.leni],
-                backgroundColor: ['#ff4d4d', '#4d94ff', '#ffb3d9']
+                backgroundColor: ['#ff4d4d', '#4d94ff', '#ffb3d9'],
+                borderColor: '#00f2ff',
+                borderWidth: 1
             }]
         },
-        options: { scales: { y: { beginAtZero: true } } }
+        options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: '#30305a' } } } }
     });
 
     if (userRole === 'admin') {
@@ -30,15 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function openDashboard() {
     document.getElementById("dashboard").style.display = "block";
+    window.scrollTo({ top: 500, behavior: 'smooth' });
 }
 
 function vote(candidate) {
     if (userRole === 'admin') {
-        alert("Admins cannot vote. Log in as a voter to participate.");
+        alert("SECURITY ALERT: Administrative accounts are restricted from voting.");
         return;
     }
     if (state.votedEmails.includes(currentUserEmail)) {
-        alert("This Gmail account has already voted!");
+        alert("DUPLICATE ENTRY: This Gmail account has already cast a ballot.");
         return;
     }
     state.votes[candidate]++;
@@ -47,22 +50,22 @@ function vote(candidate) {
     chart.data.datasets[0].data = [state.votes.sarah, state.votes.vico, state.votes.leni];
     chart.update();
     predictWinner();
-    alert("Vote successful!");
+    alert("SUCCESS: Your vote has been recorded in the local database.");
 }
 
 function predictWinner() {
     const v = state.votes;
     const total = v.sarah + v.vico + v.leni;
     if (total === 0) {
-        document.getElementById("prediction").textContent = "Waiting for initial data...";
+        document.getElementById("prediction").textContent = "STATUS: Awaiting Initial Data...";
         return;
     }
     const winner = Object.keys(v).reduce((a, b) => v[a] > v[b] ? a : b);
-    document.getElementById("prediction").innerHTML = `Leading: <strong>${winner.toUpperCase()}</strong>`;
+    document.getElementById("prediction").innerHTML = `AI PREDICTION: <strong style="color:#00f2ff">${winner.toUpperCase()} IS LEADING</strong>`;
 }
 
 function resetPoll() {
-    if (confirm("Clear all voting data?")) {
+    if (confirm("CRITICAL WARNING: This will permanently delete all voter records. Proceed?")) {
         localStorage.removeItem('pollData');
         location.reload();
     }
