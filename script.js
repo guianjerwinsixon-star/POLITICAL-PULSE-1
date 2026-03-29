@@ -1,6 +1,6 @@
 let state = JSON.parse(localStorage.getItem('pollData')) || {
     votes: { sarah: 0, vico: 0, leni: 0 },
-    votedEmails: []
+    votersLog: [] 
 };
 
 const userRole = localStorage.getItem('userRole');
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (userRole === 'admin') {
         document.getElementById('adminControls').style.display = 'block';
+        renderVoterLog(); 
     }
     predictWinner();
 });
@@ -37,20 +38,65 @@ function openDashboard() {
 
 function vote(candidate) {
     if (userRole === 'admin') {
-        alert("SECURITY ALERT: Administrative accounts are restricted from voting.");
+        alert("SECURITY ALERT: Administrative accounts cannot vote.");
         return;
     }
-    if (state.votedEmails.includes(currentUserEmail)) {
+
+    const alreadyVoted = state.votersLog.find(v => v.email === currentUserEmail);
+    if (alreadyVoted) {
         alert("DUPLICATE ENTRY: This Gmail account has already cast a ballot.");
         return;
     }
+
+    const now = new Date();
+    const timestamp = `${now.toLocaleDateString()} | ${now.toLocaleTimeString()}`;
+
     state.votes[candidate]++;
-    state.votedEmails.push(currentUserEmail);
+    state.votersLog.push({
+        email: currentUserEmail,
+        candidate: candidate.toUpperCase(),
+        time: timestamp
+    });
+
     localStorage.setItem('pollData', JSON.stringify(state));
     chart.data.datasets[0].data = [state.votes.sarah, state.votes.vico, state.votes.leni];
     chart.update();
     predictWinner();
-    alert("SUCCESS: Your vote has been recorded in the local database.");
+    alert("SUCCESS: Your vote has been recorded.");
+}
+
+function renderVoterLog() {
+    const logTable = document.getElementById('voterTableBody');
+    if (!logTable) return;
+    
+    logTable.innerHTML = "";
+    state.votersLog.forEach(entry => {
+        const row = `<tr>
+            <td>${entry.email}</td>
+            <td>${entry.candidate}</td>
+            <td>${entry.time}</td>
+        </tr>`;
+        logTable.innerHTML += row;
+    });
+}
+
+// SEARCH FILTER FUNCTION
+function filterLog() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const table = document.getElementById("voterTableBody");
+    const trs = table.getElementsByTagName("tr");
+
+    for (let i = 0; i < trs.length; i++) {
+        const emailCell = trs[i].getElementsByTagName("td")[0];
+        if (emailCell) {
+            const textValue = emailCell.textContent || emailCell.innerText;
+            if (textValue.toLowerCase().indexOf(input) > -1) {
+                trs[i].style.display = "";
+            } else {
+                trs[i].style.display = "none";
+            }
+        }
+    }
 }
 
 function predictWinner() {
