@@ -10,7 +10,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
 }
 .login-card, .card {
     background: #1a1a2e;
@@ -83,3 +84,12 @@ button:hover {
     border-radius: 8px;
     font-size: 14px;
 }
+.privacy-box {
+    max-width: 900px;
+    margin: 50px auto;
+    text-align: left;
+    line-height: 1.6;
+}
+.privacy-box h2 { color: #00f2ff; }
+.privacy-box h3 { color: #4d94ff; margin-top: 20px; }
+.privacy-box p, .privacy-box li { color: #b0b0d1; font-size: 0.95rem; }
